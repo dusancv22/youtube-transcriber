@@ -1,0 +1,9 @@
+# Example YouTube URLs for batch processing
+# Add your YouTube URLs here, one per line
+
+# Example formats:
+https://www.youtube.com/watch?v=VIDEO_ID_1
+https://youtu.be/VIDEO_ID_2
+VIDEO_ID_3
+https://youtube.com/shorts/VIDEO_ID_4
+https://www.youtube.com/live/VIDEO_ID_5

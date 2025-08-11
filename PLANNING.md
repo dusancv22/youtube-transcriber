@@ -3,175 +3,152 @@
 ## Project Overview
 
 **Name:** YouTube Transcriber  
-**Purpose:** A comprehensive web application for extracting YouTube video transcripts with support for multiple URL formats, chapter detection, and various export options  
+**Purpose:** A standalone command-line application for extracting YouTube video transcripts with support for multiple URL formats, batch processing, and flexible output options  
 **Status:** Production-ready  
-**Version:** 1.0.0  
+**Version:** 2.0.0  
 
-The YouTube Transcriber provides a clean, modern interface for users to extract transcripts from YouTube videos. It supports various YouTube URL formats and prioritizes English transcripts while providing automatic fallbacks to available languages.
+The YouTube Transcriber is a simple, efficient CLI tool that allows users to extract transcripts from YouTube videos directly from their terminal. It supports various YouTube URL formats, batch processing, and prioritizes English transcripts while providing automatic fallbacks to available languages.
 
 ## Technology Stack
 
-### Backend
-- **Framework:** FastAPI 1.0.0
-- **Server:** Uvicorn with auto-reload
+### Core Application
+- **Type:** Command-line interface (CLI)
 - **Language:** Python 3.x
+- **Architecture:** Standalone single-file application
 - **Core Libraries:**
   - youtube-transcript-api (transcript extraction)
   - yt-dlp (video metadata extraction)
-  - pydantic (data validation)
-  - requests (HTTP requests)
-  - python-multipart (form data handling)
-  - jinja2 (template support)
-  - aiofiles (async file operations)
 
-### Frontend
-- **Languages:** HTML5, CSS3, vanilla JavaScript
-- **Architecture:** Single-page application (SPA)
-- **UI Framework:** Custom CSS with modern responsive design
-- **JavaScript:** ES6+ with async/await patterns
-
-### Tools & Deployment
+### Tools & Distribution
 - **Development:** Python virtual environment
-- **Server:** Uvicorn development server
-- **API Documentation:** Automatic OpenAPI/Swagger docs via FastAPI
+- **Execution:** Direct Python script execution
+- **Dependencies:** Minimal - only 2 external libraries
 
 ## User Personas
 
-### Primary User: Content Creators
-- **Description:** YouTubers, podcasters, and video editors
-- **Needs:** Quick access to video transcripts for subtitle creation, content repurposing, and editing workflows
-- **Pain Points:** Manual transcription is time-consuming and expensive
+### Primary User: Developers & Power Users
+- **Description:** Software developers, data scientists, and technical users comfortable with command-line tools
+- **Needs:** Quick, automated transcript extraction for processing pipelines, research, and analysis
+- **Pain Points:** Need scriptable, batch-processable solution without GUI overhead
 
-### Secondary User: Researchers & Analysts
-- **Description:** Academic researchers, market analysts, and content analysts
-- **Needs:** Text-based analysis of video content, quotation extraction, and content categorization
-- **Pain Points:** Need searchable, text format of video content for analysis tools
+### Secondary User: Content Creators
+- **Description:** YouTubers, podcasters, and video editors who prefer command-line workflows
+- **Needs:** Batch processing of multiple videos, automated filename generation, scriptable workflows
+- **Pain Points:** Manual transcription is time-consuming, need automation for large volumes
 
-### Tertiary User: Students & Educators
-- **Description:** Students taking online courses, educators creating materials
-- **Needs:** Study materials, note-taking, and accessibility features
-- **Pain Points:** Video content is not always accessible or searchable
+### Tertiary User: Researchers & Analysts
+- **Description:** Academic researchers, market analysts requiring programmatic access to transcript data
+- **Needs:** Batch processing capabilities, clean text output for analysis pipelines, metadata extraction
+- **Pain Points:** Need to process large datasets of videos efficiently
 
-### Quaternary User: Accessibility Advocates
-- **Description:** Users requiring text alternatives to audio content
-- **Needs:** Full transcript access for hearing-impaired users
-- **Pain Points:** Not all videos have accurate closed captions
+### Quaternary User: System Administrators
+- **Description:** IT professionals integrating transcript extraction into larger systems
+- **Needs:** Reliable, scriptable tool that can be integrated into automated workflows and cron jobs
+- **Pain Points:** Need minimal dependencies and reliable error handling for production systems
 
 ## Features
 
 ### Completed Features
 
-- **YouTube URL Processing:** Comprehensive URL format support including standard URLs, youtu.be short URLs, embed URLs, shorts URLs, live URLs, and mobile URLs (Added 2024-01-08)
-- **Video ID Extraction:** Robust video ID extraction with regex patterns and URL parsing fallbacks (Added 2024-01-08)
-- **Transcript Extraction:** Multi-language transcript extraction with English priority and automatic fallbacks (Added 2024-01-08)
-- **Chapter Detection:** Automatic chapter extraction from video metadata using yt-dlp integration (Added 2024-01-08)
-- **Clean Transcript Formatting:** Text cleaning and formatting for improved readability (Added 2024-01-08)
-- **Copy to Clipboard:** One-click transcript copying functionality (Added 2024-01-08)
-- **Download Functionality:** Clean filename generation and text file download (Added 2024-01-08)
-- **Responsive Web Interface:** Modern, mobile-friendly UI with loading states and error handling (Added 2024-01-08)
-- **Toast Notifications:** User feedback system for success/error states (Added 2024-01-08)
-- **URL Validation:** Client-side and server-side URL validation (Added 2024-01-08)
-- **Video Metadata Display:** Title, duration, and extraction timestamp display (Added 2024-01-08)
-- **Error Handling:** Comprehensive error handling with user-friendly messages (Added 2024-01-08)
+- **YouTube URL Processing:** Comprehensive URL format support including standard URLs, youtu.be short URLs, embed URLs, shorts URLs, live URLs, and mobile URLs (Converted 2025-01-11)
+- **Video ID Extraction:** Robust video ID extraction with regex patterns and URL parsing fallbacks (Converted 2025-01-11)
+- **Transcript Extraction:** Multi-language transcript extraction with English priority and automatic fallbacks (Converted 2025-01-11)
+- **Clean Transcript Formatting:** Advanced text cleaning and paragraph formatting for improved readability (Enhanced 2025-01-11)
+- **Batch Processing:** Process multiple URLs from input file with progress tracking (Added 2025-01-11)
+- **Flexible Output Options:** Console output, file output, or automatic filename generation (Added 2025-01-11)
+- **Video Metadata Integration:** Optional video metadata (title, duration, uploader) in output (Added 2025-01-11)
+- **Command-line Interface:** Full argparse-based CLI with comprehensive options (Added 2025-01-11)
+- **Progress Tracking:** Real-time progress indication for batch operations (Added 2025-01-11)
+- **Error Handling:** Comprehensive error handling with clear CLI error messages (Enhanced 2025-01-11)
+- **Quiet Mode:** Suppress progress messages for scripting use cases (Added 2025-01-11)
+- **Auto-naming:** Automatic filename generation based on video titles (Added 2025-01-11)
 
 ### In-Progress Features
 *None currently in development*
 
 ### Planned Features
 
-- **Batch Processing:** Upload multiple YouTube URLs and process them in sequence
-- **Additional Export Formats:** PDF, DOCX, and SRT subtitle file exports
-- **Transcript Search:** Full-text search with highlighting within transcripts
-- **User Authentication:** Account creation and transcript history management
-- **API Rate Limiting:** Prevent abuse and ensure fair usage
-- **Docker Deployment:** Containerized deployment for easy hosting
-- **Advanced Filtering:** Language preference settings and transcript quality filters
-- **Transcript Editing:** Basic editing capabilities for downloaded transcripts
-- **Integration APIs:** REST API endpoints for third-party integrations
+- **Additional Export Formats:** SRT subtitle file export, JSON structured output
+- **Advanced Filtering:** Language preference configuration, transcript quality filtering
+- **Rate Limiting Controls:** Built-in delays and retry logic for YouTube API limits
+- **Configuration File Support:** YAML/JSON config files for default settings
+- **Logging System:** Structured logging for debugging and audit trails
+- **Plugin Architecture:** Extensible formatting and output plugins
+- **Docker Support:** Containerized version for deployment environments
+- **Performance Optimization:** Concurrent processing for batch operations
+- **Advanced Error Recovery:** Retry mechanisms and graceful degradation
 
 ## Architecture
 
 ### System Architecture
-- **Pattern:** Service-oriented architecture with clear separation of concerns
-- **API Design:** RESTful API with FastAPI's automatic documentation
-- **Concurrency:** Async/await patterns throughout for non-blocking operations
-- **Static Serving:** FastAPI static file serving for frontend assets
+- **Pattern:** Single-file CLI application with modular class design
+- **Execution Model:** Direct Python script execution with argument parsing
+- **Processing:** Synchronous processing with error handling and progress tracking
+- **Storage:** No persistent storage - stateless operations only
 
-### Core Services
-- **TranscriptService:** Handles YouTube transcript extraction and text formatting
-- **ChapterService:** Extracts chapter information from video metadata
-- **URLExtractor:** Validates and extracts video IDs from various URL formats
+### Core Classes
+- **YouTubeTranscriber:** Main orchestrator class handling the complete workflow
+- **URLExtractor:** Validates and extracts video IDs from various YouTube URL formats
+- **SimpleFormatter:** Advanced text formatting and paragraph structuring
 
-### Database Schema
-*Current version uses no persistent storage - all operations are stateless*
+### Data Flow
+1. URL/batch file input via command line
+2. Video ID extraction and validation
+3. Metadata retrieval (optional)
+4. Transcript extraction with language fallbacks
+5. Text formatting and paragraph structuring
+6. Output to console or file(s)
 
-Future database schema (planned):
-```sql
-Users (user_id, email, created_at, subscription_type)
-Transcripts (transcript_id, user_id, video_id, title, content, created_at)
-ProcessingJobs (job_id, user_id, status, created_at, completed_at)
-```
+### CLI Interface
+- **Argument Parsing:** argparse-based command-line interface
+- **Input Methods:** Single URL, video ID, or batch file processing
+- **Output Options:** Console, specific file, auto-generated filename, or directory
+- **Configuration:** Command-line flags for metadata, quiet mode, etc.
 
-### API Structure
+### Error Handling
+- Graceful failure with informative error messages
+- Continue-on-error for batch processing
+- Detailed error reporting to stderr
+- Exit codes for scripting integration
 
-#### Current Endpoints
-- `GET /` - Serve main application page
-- `POST /api/transcript` - Extract transcript from YouTube URL
-- `GET /api/health` - Health check endpoint
-- `GET /static/*` - Static file serving
+## Configuration System
+*Currently command-line only*
 
-#### Request/Response Models
-- **TranscriptRequest:** `{ url: string }`
-- **TranscriptResponse:** `{ video_id, title, transcript, chapters, duration, extracted_at }`
-- **ChapterData:** `{ title, start_time, end_time, timestamp }`
-- **ErrorResponse:** `{ error, detail, timestamp }`
+Planned configuration options:
+- Configuration file support (YAML/JSON)
+- Environment variable support
+- User-specific default settings
+- Language preference configuration
 
-### Routing
-- Single-page application with client-side routing
-- Static file serving for CSS, JavaScript, and assets
-- API routes under `/api/` prefix
+## CLI UX Patterns
 
-### State Management
-- Client-side: Vanilla JavaScript with class-based component management
-- No complex state management library required due to simple application state
-- Server-side: Stateless request/response cycle
+### Command Design
+- **Intuitive Arguments:** Clear, logical argument structure
+- **Help System:** Comprehensive help text with examples
+- **Progress Feedback:** Real-time progress indication for long operations
+- **Error Messages:** Clear, actionable error messages with suggestions
 
-## Authentication System
-*Not currently implemented*
-
-Planned implementation:
-- JWT token-based authentication
-- Session management for transcript history
-- Rate limiting per authenticated user
-- Guest access with limited functionality
-
-## UI/UX Patterns
-
-### Design System
-- **Color Scheme:** Modern, accessible color palette with proper contrast ratios
-- **Typography:** Clean, readable font stack with proper hierarchy
-- **Layout:** Centered container with responsive grid system
-- **Components:** Reusable button styles, form inputs, and notification system
-
-### Interaction Patterns
-- **Loading States:** Spinner animations during API calls
-- **Error Handling:** Friendly error messages with retry options
-- **Toast Notifications:** Non-intrusive success/error feedback
-- **Progressive Enhancement:** Works without JavaScript for basic functionality
+### Output Patterns
+- **Structured Output:** Consistent formatting for metadata and transcripts
+- **Quiet Mode:** Suppressed output for scripting scenarios
+- **Batch Summaries:** Comprehensive success/failure reporting
+- **Flexible Formatting:** Optional metadata inclusion/exclusion
 
 ### Accessibility Features
-- Proper ARIA labels and semantic HTML
-- Keyboard navigation support
-- Screen reader compatibility
-- High contrast color scheme
+- Clear error messages and status updates
+- Progress indication for batch operations
+- Consistent exit codes for scripting
+- Standard stream usage (stdout/stderr)
 
 ## Business Rules
 
 ### Transcript Processing
 - English language transcripts are prioritized
-- Fallback order: Manual English → Generated English → Any available language
-- Transcript cleaning removes timestamps and formatting artifacts
-- Maximum processing time: 30 seconds per request
+- Fallback order: English → Manual English → Generated English → Any available language
+- Advanced text formatting creates natural paragraph breaks
+- Sentence-level intelligent paragraph grouping
+- Automatic text cleaning and capitalization
+- No timeout limits for individual video processing
 
 ### URL Validation
 - Support for all standard YouTube URL formats
@@ -179,9 +156,10 @@ Planned implementation:
 - Reject invalid or non-YouTube URLs with clear error messages
 
 ### Content Restrictions
-- Only publicly available YouTube videos
+- Only publicly available YouTube videos with existing transcripts
 - Respects YouTube's transcript availability (no forced generation)
 - No support for age-restricted or private videos
+- Batch processing continues on individual failures
 
 ## Integration Points
 
@@ -190,110 +168,122 @@ Planned implementation:
 - **yt-dlp:** Video metadata extraction and validation
 - **YouTube Platform:** Source of all video content and metadata
 
+### System Integration
+- **Command Line:** Standard CLI interface for shell integration
+- **Scripting:** Exit codes and error handling for automation
+- **File System:** Direct file output for integration with other tools
+- **Batch Processing:** File-based input for large-scale operations
+
 ### Third-Party Dependencies
-- All dependencies specified in requirements.txt
-- Regular security updates required for youtube-transcript-api and yt-dlp
+- Minimal dependencies: only youtube-transcript-api and yt-dlp
+- Regular security updates required for both dependencies
 
 ## Performance Considerations
 
 ### Optimization Strategies
-- Async/await patterns prevent blocking operations
-- Concurrent processing of metadata and transcript extraction
-- Efficient text processing with minimal memory allocation
-- Client-side caching of extracted transcripts
+- Synchronous processing with efficient resource usage
+- Minimal memory allocation for text processing
+- Efficient regex-based text formatting
+- Direct file I/O without intermediate caching
 
 ### Scalability
-- Stateless architecture enables horizontal scaling
-- Individual request isolation prevents cascade failures
-- Future: Connection pooling and request queueing for high traffic
+- Single-process CLI design optimized for individual use
+- Stateless operation enables parallel execution of multiple instances
+- Batch processing handles large datasets efficiently
+- Future: Concurrent processing for batch operations
 
 ### Monitoring
-- Basic error logging implemented
-- Future: Performance metrics, request tracking, and usage analytics
+- Error output to stderr for monitoring integration
+- Exit codes for success/failure detection
+- Progress reporting for batch operations
+- Future: Structured logging and performance metrics
 
-## Environment Variables
+## Configuration Options
 
 ### Current Configuration
-*All configuration is currently hardcoded*
+*All configuration via command-line arguments*
 
-### Future Environment Variables
+### Future Configuration Support
 ```
-DATABASE_URL=postgresql://...
-JWT_SECRET_KEY=...
-YOUTUBE_API_KEY=... (if needed for enhanced features)
-RATE_LIMIT_REQUESTS_PER_MINUTE=60
-MAX_CONCURRENT_JOBS=10
+YOUTUBE_TRANSCRIBER_LANGUAGE_PREFERENCE=en
+YOUTUBE_TRANSCRIBER_OUTPUT_DIR=./transcripts
+YOUTUBE_TRANSCRIBER_INCLUDE_METADATA=true
+YOUTUBE_TRANSCRIBER_QUIET_MODE=false
+YOUTUBE_TRANSCRIBER_RATE_LIMIT_DELAY=1
 ```
 
 ## Testing Strategy
 
 ### Current Testing
-*No automated tests currently implemented*
+*Manual testing with various YouTube URL formats*
 
 ### Planned Testing Approach
-- **Unit Tests:** Service-level testing with pytest
-- **Integration Tests:** API endpoint testing with FastAPI test client
-- **Frontend Tests:** JavaScript unit tests for key functions
-- **E2E Tests:** Full user workflow testing with Playwright
+- **Unit Tests:** Class-level testing with pytest for URL extraction, formatting
+- **Integration Tests:** End-to-end CLI testing with real YouTube videos
+- **Batch Tests:** Large dataset processing validation
+- **Error Handling Tests:** Network failures, invalid URLs, missing transcripts
 
 ### Test Coverage Goals
-- 80% backend code coverage
-- All API endpoints tested
-- Critical user workflows covered in E2E tests
+- 80% code coverage for core classes
+- All URL format patterns tested
+- Batch processing workflows validated
+- Error scenarios comprehensively covered
 
-## Deployment
+## Distribution
 
-### Current Deployment
-- Local development server via `python run.py`
-- Uvicorn server with auto-reload enabled
-- Static file serving from FastAPI
+### Current Distribution
+- Direct Python script execution: `python youtube_transcriber.py`
+- Virtual environment with minimal dependencies
+- Single-file application for easy deployment
 
-### Production Deployment (Planned)
-- Docker containerization
-- Reverse proxy setup (nginx)
-- Process management (gunicorn/uvicorn workers)
-- Environment-specific configuration
-- Health monitoring and logging
+### Distribution Options (Planned)
+- **PyPI Package:** pip-installable package with console script
+- **Docker Container:** Containerized version for consistent environments
+- **Standalone Binary:** PyInstaller-based executable for systems without Python
+- **System Package:** Distribution-specific packages (deb, rpm)
 
-### Infrastructure
-- **Hosting:** Cloud platform (AWS, GCP, or DigitalOcean)
-- **Database:** PostgreSQL for user data and transcript history
-- **Caching:** Redis for frequently accessed transcripts
-- **CDN:** CloudFlare for static asset delivery
+### Deployment Scenarios
+- **Developer Workstation:** Direct script execution in virtual environment
+- **CI/CD Pipeline:** Containerized batch processing
+- **Server Automation:** cron-based scheduled transcript extraction
+- **Data Processing:** Integration with larger data processing workflows
 
 ## Constraints & Non-Goals
 
 ### Technical Constraints
 - YouTube's transcript availability (cannot generate transcripts for videos without them)
 - API rate limits from YouTube and transcript services
-- Browser compatibility requirements (modern browsers only)
-- File size limitations for very long videos
+- Python 3.8+ requirement for modern language features
+- Memory usage scales with transcript length and batch size
 
-### Business Constraints
-- No monetization features in current version
-- No enterprise features or white-labeling
+### Usage Constraints
+- Command-line interface requires terminal familiarity
+- No GUI for users preferring graphical interfaces
 - Limited to YouTube platform only
+- Single-threaded processing (no concurrent downloads)
 
 ### Explicit Non-Goals
 - Video downloading or storage
 - Transcript generation/AI transcription
-- Social features or user communities
-- Multi-language UI (English only)
-- Real-time collaboration features
+- Graphical user interface (GUI)
+- Web server or API functionality
+- Multi-user or collaborative features
+- Real-time processing or streaming
 
 ## Development Guidelines
 
 ### Code Style
 - Python: Follow PEP 8 standards
-- JavaScript: ES6+ with consistent naming conventions
-- HTML/CSS: Semantic markup with BEM-style CSS classes
+- Type hints for all function parameters and return values
+- Docstrings for all classes and public methods
+- Consistent error handling patterns
 
 ### Best Practices
-- Async/await for all I/O operations
-- Comprehensive error handling with user-friendly messages
-- Type hints for all Python functions
-- JSDoc comments for complex JavaScript functions
-- Responsive design principles for all UI components
+- Comprehensive error handling with clear CLI messages
+- Type hints for all Python functions and methods
+- Modular class design with single responsibility principle
+- Graceful degradation for network and API failures
+- Clear separation between data processing and I/O operations
 
 ### Version Control
 - Feature branch workflow
@@ -302,11 +292,12 @@ MAX_CONCURRENT_JOBS=10
 - Security patch priority
 
 ### Documentation
-- API documentation via FastAPI's automatic OpenAPI generation
-- Code comments for complex business logic
-- README updates for deployment and development setup
+- Comprehensive CLI help text with examples
+- Code comments for complex text processing logic
+- README with detailed usage examples and troubleshooting
+- Inline docstrings for all public methods
 
 ---
 
 *Document created: 2025-01-11*  
-*Last updated: 2025-01-11*
+*Last updated: 2025-01-11 (Converted to CLI architecture)*
