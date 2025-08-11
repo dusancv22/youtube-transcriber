@@ -37,7 +37,11 @@
       "Bash(start \"test\" \"C:\\Users\\Dusan\\source\\repos\\YouTube_Transcriber\\test_filename.html\")",
       "Bash(del \"C:\\Users\\Dusan\\source\\repos\\YouTube_Transcriber\\test_filename.html\")",
       "Bash(del:*)",
-      "Bash(rd:*)"
+      "Bash(rd:*)",
+      "Bash(./venv/Scripts/pyinstaller --onefile --windowed --name \"YouTube Transcriber\" youtube_transcriber_gui.py)",
+      "Bash(dir dist)",
+      "Bash(powershell:*)",
+      "Bash(git check-ignore:*)"
     ],
     "deny": []
   }
