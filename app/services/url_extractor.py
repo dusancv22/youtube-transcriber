@@ -23,6 +23,8 @@ class URLExtractor:
             r'(?:https?://)?(?:www\.)?youtube\.com/embed/([a-zA-Z0-9_-]{11})',
             # YouTube shorts URLs
             r'(?:https?://)?(?:www\.)?youtube\.com/shorts/([a-zA-Z0-9_-]{11})',
+            # YouTube live URLs
+            r'(?:https?://)?(?:www\.)?youtube\.com/live/([a-zA-Z0-9_-]{11})',
             # Mobile YouTube URLs
             r'(?:https?://)?m\.youtube\.com/watch\?v=([a-zA-Z0-9_-]{11})',
             # Just video ID pattern
@@ -95,6 +97,12 @@ class URLExtractor:
                 # Shorts URL
                 elif parsed_url.path.startswith('/shorts/'):
                     video_id = parsed_url.path.split('/shorts/')[1].split('?')[0]
+                    if self._is_valid_video_id(video_id):
+                        return video_id
+                
+                # Live URL
+                elif parsed_url.path.startswith('/live/'):
+                    video_id = parsed_url.path.split('/live/')[1].split('?')[0]
                     if self._is_valid_video_id(video_id):
                         return video_id
             

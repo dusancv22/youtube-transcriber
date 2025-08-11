@@ -66,7 +66,7 @@ class YouTubeTranscriber {
 
     isValidYouTubeUrl(url) {
         const patterns = [
-            /^(https?:\/\/)?(www\.)?(youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/|youtube\.com\/shorts\/)[\w-]+/,
+            /^(https?:\/\/)?(www\.)?(youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/|youtube\.com\/shorts\/|youtube\.com\/live\/)[\w-]+/,
             /^[\w-]{11}$/ // Direct video ID
         ];
         
