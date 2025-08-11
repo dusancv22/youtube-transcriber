@@ -245,11 +245,11 @@ class YouTubeTranscriber {
         const data = this.currentTranscript;
         let content = '';
         
-        content += `Title: ${data.title}\n`;
-        content += `Video ID: ${data.video_id}\n`;
+        content += `Title: ${data.title || 'Untitled Video'}\n`;
+        content += `Video ID: ${data.video_id || 'Unknown'}\n`;
         content += `Duration: ${this.formatDuration(data.duration)}\n`;
         content += `Extracted: ${this.formatDate(data.extracted_at)}\n`;
-        content += `URL: https://www.youtube.com/watch?v=${data.video_id}\n\n`;
+        content += `URL: https://www.youtube.com/watch?v=${data.video_id || 'unknown'}\n\n`;
         
         if (data.chapters && data.chapters.length > 0) {
             content += 'CHAPTERS:\n';
@@ -269,9 +269,23 @@ class YouTubeTranscriber {
 
     generateFilename() {
         const data = this.currentTranscript;
-        const title = data.title.replace(/[^a-z0-9]/gi, '_').toLowerCase();
+        
+        // Handle cases where title might be undefined, null, or empty
+        let title = 'untitled';
+        if (data && data.title && typeof data.title === 'string' && data.title.trim()) {
+            title = data.title.trim()
+                .replace(/[^a-z0-9\s-]/gi, '') // Remove special characters except spaces and hyphens
+                .replace(/\s+/g, '_') // Replace spaces with underscores
+                .toLowerCase()
+                .substring(0, 50); // Limit length to avoid very long filenames
+        }
+        
+        // Add video ID if available as fallback identifier
+        const videoId = data && data.video_id ? `_${data.video_id}` : '';
         const timestamp = new Date().toISOString().split('T')[0];
-        return `youtube_transcript_${title}_${timestamp}.txt`;
+        
+        // Ensure filename always has .txt extension
+        return `youtube_transcript_${title}${videoId}_${timestamp}.txt`;
     }
 
     retryExtraction() {
