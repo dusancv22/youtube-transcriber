@@ -1,0 +1,8 @@
+fastapi
+uvicorn[standard]
+youtube-transcript-api
+yt-dlp
+requests
+python-multipart
+jinja2
+aiofiles
