@@ -271,21 +271,27 @@ class YouTubeTranscriber {
         const data = this.currentTranscript;
         
         // Handle cases where title might be undefined, null, or empty
-        let title = 'untitled';
+        let title = 'Untitled Video';
         if (data && data.title && typeof data.title === 'string' && data.title.trim()) {
             title = data.title.trim()
-                .replace(/[^a-z0-9\s-]/gi, '') // Remove special characters except spaces and hyphens
-                .replace(/\s+/g, '_') // Replace spaces with underscores
-                .toLowerCase()
-                .substring(0, 50); // Limit length to avoid very long filenames
+                // Replace filesystem-unsafe characters with dashes
+                .replace(/[<>:"/\\|?*]/g, '-')
+                // Remove control characters (ASCII 0-31 and 127)
+                .replace(/[\x00-\x1F\x7F]/g, '')
+                // Replace multiple consecutive dashes/spaces with single dash
+                .replace(/[-\s]+/g, ' ')
+                // Trim any leading/trailing dashes or spaces
+                .trim()
+                .replace(/^-+|-+$/g, '');
         }
         
-        // Add video ID if available as fallback identifier
-        const videoId = data && data.video_id ? `_${data.video_id}` : '';
-        const timestamp = new Date().toISOString().split('T')[0];
+        // Fallback if title becomes empty after cleaning
+        if (!title) {
+            title = 'Untitled Video';
+        }
         
-        // Ensure filename always has .txt extension
-        return `youtube_transcript_${title}${videoId}_${timestamp}.txt`;
+        // Return clean filename with transcript suffix
+        return `${title} - Transcript.txt`;
     }
 
     retryExtraction() {
